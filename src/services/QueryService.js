@@ -176,9 +176,31 @@
         break;
 
       case 'number':
-        obj.range = {};
-        obj.range[fieldName] = {};
-        obj.range[fieldName][group.subType] = group.value;
+        if (!group.subType) return;
+        switch (group.subType) {
+          case 'equals':
+            if (!group.value) return;
+            obj.term = {};
+            obj.term[fieldName] = group.value;
+            break;
+          case 'lt':
+          case 'lte':
+          case 'gt':
+          case 'gte':
+            if (group.value === undefined) return;
+            obj.range = {};
+            obj.range[fieldName] = {};
+            obj.range[fieldName][group.subType] = group.value;
+            break;
+          case 'exists':
+            obj.exists = { field: fieldName };
+            break;
+          case 'notExists':
+            obj.missing = { field: fieldName };
+            break;
+          default:
+            throw new Error('unexpected subtype ' + group.subType);
+        }
         break;
 
       case 'date':
