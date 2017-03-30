@@ -1,10 +1,10 @@
 <div class="elastic-builder-group">
-  <h5>If
+  <h5>如果
     <select data-ng-model="group.subType" class="form-control">
-      <option value="and">all</option>
-      <option value="or">any</option>
+      <option value="and">所有</option>
+      <option value="or">任意</option>
     </select>
-    of these conditions are met
+    条件满足
   </h5>
   <div
     data-ng-repeat="rule in group.rules"
@@ -14,15 +14,15 @@
     data-on-remove="removeChild($index)"></div>
 
   <div class="list-group-item actions" data-ng-class="getGroupClassName()">
-    <a class="btn btn-xs btn-primary" title="Add Sub-Rule" data-ng-click="addRule()">
-      <i class="fa fa-plus"></i>
+    <a class="btn btn-xs btn-primary" title="添加条件" data-ng-click="addRule()">
+      添加条件
     </a>
-    <a class="btn btn-xs btn-primary" title="Add Sub-Group" data-ng-click="addGroup()">
-      <i class="fa fa-list"></i>
+    <a class="btn btn-xs btn-primary" title="添加条件组" data-ng-click="addGroup()">
+      添加条件组
     </a>
   </div>
 
   <a class="btn btn-xs btn-danger remover" data-ng-click="onRemove()">
-    <i class="fa fa-minus"></i>
+    删除
   </a>
 </div>
